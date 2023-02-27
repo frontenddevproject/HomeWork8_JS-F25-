@@ -37,18 +37,23 @@ class SamsungS23Ultra extends Samsung {
 }
 
 const samsungS23Ultra = new SamsungS23Ultra("Smartphone", "S23Ultra", "black", [6.8, "inches"] , "Qualcomm Snapdragon 8 Gen2", [256, "Gb"], [8, "Gb"], true, [String.fromCodePoint(0x20AC), 1400]);
-
 samsungS23Ultra.aboutPhone();
 
+function checkPush (phoneClass, arr) {
+	let newArrPush = [];
+	for (let key of arr) {
+		if (key instanceof phoneClass) {
+			newArrPush.push(key);
+		}
+	}
+	return newArrPush;
+}
 
-// // function check (phoneClass, arr) {
-// // 	let newArr = [];
-// // 	for (let key in arr) {
-// // 		if (key instanceof phoneClass) {
-// // 			newArr = newArr.push(key);
-// // 		}
-// // 	}
-// // 	return newArr;
-// // }
+function checkFilter (phoneClass, arr) {
+	let newArrFilter = [];
+	newArrFilter = arr.filter(key => key instanceof phoneClass);
+	return newArrFilter;
+}
 
-// console.log(check(Samsung, [SamsungS23Ultra, {name: "Alex"}, [1, 2, 3], "asdad", samsungS23, 56, samsungS23Plus, samsungS23Ultra]));
+console.log(checkPush(Samsung, [SamsungS23Ultra, samsungS23, samsungS23Ultra, {name: "Alex"}, [1, 2, 3], "asdad", samsungS23Plus]), "Method Push");
+console.log(checkFilter(Samsung, [SamsungS23Ultra, samsungS23, samsungS23Ultra, {name: "Alex"}, [1, 2, 3], "asdad", samsungS23Plus]), "Method Filter");
